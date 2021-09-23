@@ -45,5 +45,3 @@ var Node = function(value) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
-linkedList.addToTail(4);
-linkedList.addToTail(5);

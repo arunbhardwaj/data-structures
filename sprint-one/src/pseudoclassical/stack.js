@@ -1,4 +1,6 @@
 var Stack = function() {
+
+  Object.assign(Stack.prototype, stackMethods);
   this._size = 0;
 };
 
@@ -40,5 +42,3 @@ var stackMethods = {
     return this['_size'];
   }
 };
-
-Object.assign(Stack.prototype, stackMethods);
