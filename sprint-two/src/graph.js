@@ -7,7 +7,6 @@
 // 3 ways
 // Using nodes
 // using hashtables
-//
 var Graph = function() {
   var newGraph = Object.create(Graph.prototype);
   newGraph.nodes = {};
@@ -45,10 +44,10 @@ Graph.prototype.removeNode = function(node) {
 Graph.prototype.hasEdge = function(fromNode, toNode) {
   // Is this check useless?
   // if (this.hasBothNodes(fromNode, toNode)) {
-    if (this.nodes[fromNode].contains(toNode) && this.nodes[toNode].contains(fromNode)) {
-      return true;
-    }
-    return false;
+  if (this.nodes[fromNode].contains(toNode) && this.nodes[toNode].contains(fromNode)) {
+    return true;
+  }
+  return false;
   // }
   // return false;
 };
@@ -84,7 +83,7 @@ Graph.prototype.hasNode = function(node) {
     return false;
   }
   return true;
-}
+};
 
 // Checks to see if the graph contains two nodes.
 Graph.prototype.hasBothNodes = function(fromNode, toNode) {
@@ -92,11 +91,11 @@ Graph.prototype.hasBothNodes = function(fromNode, toNode) {
     return true;
   }
   return false;
-}
+};
 
 Graph.prototype.getNodeFromValue = function(node) {
   return this.nodes[node];
-}
+};
 
 
 
@@ -121,7 +120,7 @@ graphNode.Node.prototype.contains = function(targetNode) {
     }
   }
   return false;
-}
+};
 
 graphNode.Node.prototype.indexOf = function(target) {
   for (var i = 0; i < this.children.length; i++) {
@@ -130,47 +129,11 @@ graphNode.Node.prototype.indexOf = function(target) {
     }
   }
   return -1;
-}
+};
 
 graphNode.Node.prototype.deleteChild = function(node) {
   var index = this.indexOf(node);
   if (index >= 0) {
     this.children.splice(index, 1);
   }
-}
-
-// Not namespacing causes issues with linkedlist.js
-// var newNode = function(value) {
-//   var node = Object.create(newNode.prototype);
-
-//   node.value = value;
-//   // node.next = null;
-//   node.children = [];
-
-//   return node;
-// };
-
-// newNode.prototype.contains = function(targetNode) {
-//   for (var i = 0; i < this.children.length; i++) {
-//     if (this.children[i] === targetNode) {
-//       return true;
-//     }
-//   }
-//   return false;
-// }
-
-// newNode.prototype.indexOf = function(target) {
-//   for (var i = 0; i < this.children.length; i++) {
-//     if (this.children[i] === target) {
-//       return i;
-//     }
-//   }
-//   return -1;
-// }
-
-// newNode.prototype.deleteChild = function(node) {
-//   var index = this.indexOf(node);
-//   if (index >= 0) {
-//     this.children.splice(index, 1);
-//   }
-// }
+};

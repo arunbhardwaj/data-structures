@@ -16,7 +16,6 @@ var Stack = function() {
       return null;
     }
 
-    // Doesn't guarantee either but tends to on most browsers
     var lastValue = storage[length - 1];
     delete storage[length - 1];
     length--;

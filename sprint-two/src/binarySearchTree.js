@@ -14,47 +14,47 @@ var BinarySearchTree = function(value) {
  * Complexity: What is the time complexity of the above functions?
  */
 
-var BSTMethods = {}
+var BSTMethods = {};
 
+// Is there a way to get rid of the null checks?
 BSTMethods.insert = function(value) {
   var current = this;
   if (value < current.value) {
-    if (current.left === null) {
+    if (current.left == null) {
       current.left = BinarySearchTree(value);
     } else {
       current = current.left;
       current.insert(value);
     }
   } else if (value > current.value) {
-    if (current.right === null) {
+    if (current.right == null) {
       current.right = BinarySearchTree(value);
     } else {
       current.right.insert(value);
     }
   }
-}
+};
 
 BSTMethods.contains = function(value) {
-  if (this === null) {
+  if (this == null) {
     return false;
   }
   if (this.value === value) {
     return true;
   }
   if (value < this.value) {
-    return (this.left === null) ? false : this.left.contains(value);
+    return (this.left == null) ? false : this.left.contains(value);
   } else {
-    return (this.right === null) ? false : this.right.contains(value);
+    return (this.right == null) ? false : this.right.contains(value);
   }
-
-}
+};
 
 BSTMethods.depthFirstLog = function(callback) {
   callback(this.value);
-  if (this.left !== null) {
+  if (this.left != null) {
     this.left.depthFirstLog(callback);
   }
-  if (this.right !== null) {
+  if (this.right != null) {
     this.right.depthFirstLog(callback);
   }
-}
+};

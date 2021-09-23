@@ -18,15 +18,14 @@ var Queue = function() {
     }
 
     // Doesn't guarantee either but tends to on most browsers
-    var firstKey = Object.keys(storage)[0];
+    var firstKey;
+    for (var key in storage) {
+      firstKey = key;
+      break;
+    }
     var firstValue = storage[firstKey];
 
     // Doesn't guarntee the first key/value
-    // for (var key in storage) {
-    //   var firstKey = key;
-    //   var firstValue = storage[key];
-    //   break;
-    // }
     delete storage[firstKey]; // isn't executing
     length--;
     return firstValue;

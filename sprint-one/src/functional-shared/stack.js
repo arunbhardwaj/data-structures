@@ -15,7 +15,7 @@ var stackMethods = {};
 stackMethods.push = function(value) {
   this[this._size] = value;
   this._size++;
-}
+};
 
 stackMethods.pop = function() {
   if (this._size <= 0) {
@@ -26,8 +26,8 @@ stackMethods.pop = function() {
   this._size--;
 
   return lastValue;
-}
+};
 
 stackMethods.size = function(value) {
   return this['_size'];
-}
+};

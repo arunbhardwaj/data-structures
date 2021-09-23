@@ -9,7 +9,7 @@ const HashTable = function() {
 
 HashTable.prototype.insert = function(k, v) {
   var $ = this;
-  var index = getIndexBelowMaxForKey(k, $._limit);  // hash
+  var index = getIndexBelowMaxForKey(k, $._limit); // hash
   $._storage[index] = ($._storage[index]) ? $._storage[index] : []; // default assignment
   var bucket = $._storage[index];
   $.updateBucket(bucket, k, v);
@@ -46,7 +46,7 @@ HashTable.prototype.resize = function() {
   //   this.rehashAndReinsert();
   // }
 
-}
+};
 
 HashTable.prototype.rehashAndReinsert = function() {
   for (var key in this._storage) {
@@ -58,11 +58,11 @@ HashTable.prototype.rehashAndReinsert = function() {
       this.reinsert(k, v);
     }
   }
-}
+};
 
 HashTable.prototype.reinsert = function(k, v) {
   var $ = this;
-  var index = getIndexBelowMaxForKey(k, $._limit);  // hash
+  var index = getIndexBelowMaxForKey(k, $._limit); // hash
   $._storage[index] = ($._storage[index]) ? $._storage[index] : []; // default assignment
   var bucket = $._storage[index];
   $.updateBucket(bucket, k, v);
@@ -76,7 +76,7 @@ HashTable.prototype.getValue = function(bucket, k) {
       return bucket[i][1];
     }
   }
-}
+};
 
 // Helper to remove a key-value pair from a bucket;
 HashTable.prototype.removeTuple = function(bucket, k) {
@@ -86,7 +86,7 @@ HashTable.prototype.removeTuple = function(bucket, k) {
       return;
     }
   }
-}
+};
 
 // Inserts or updates the key-value pair into the bucket;
 HashTable.prototype.updateBucket = function(bucket, k, v) {
@@ -97,9 +97,9 @@ HashTable.prototype.updateBucket = function(bucket, k, v) {
     }
   }
   bucket.push([k, v]);
-}
+};
 
 // Computes the current load factor
 HashTable.prototype.computeLF = function() {
   this._currentLoadFactor = this._entries / this._limit;
-}
+};

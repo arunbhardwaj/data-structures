@@ -17,7 +17,7 @@ queueMethods.enqueue = function(value) {
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names
   this._enqueuePosition++;
   this._size++;
-}
+};
 
 queueMethods.dequeue = function() {
   if (this._size <= 0) {
@@ -29,16 +29,8 @@ queueMethods.dequeue = function() {
   this._size--;
 
   return value;
-}
+};
 
 queueMethods.size = function() {
   return this._size;
-}
-
-
-var q = Queue();
-q;
-q.enqueue('a');
-q;
-q.enqueue('b');
-q.dequeue();
+};

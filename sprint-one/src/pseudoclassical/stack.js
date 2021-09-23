@@ -25,11 +25,11 @@ var Stack = function() {
 // };
 
 var stackMethods = {
-  push : function(value) {
+  push: function(value) {
     this[this._size] = value;
     this._size++;
   },
-  pop : function() {
+  pop: function() {
     if (this._size <= 0) {
       return;
     }
@@ -39,7 +39,7 @@ var stackMethods = {
 
     return lastValue;
   },
-  size : function(value) {
+  size: function(value) {
     return this['_size'];
   }
 };
