@@ -1,4 +1,5 @@
 var Queue = function() {
+  Object.assign(Queue.prototype, queueMethods);
   this._size = 0;
   this._enqueuePosition = 0;
 };
@@ -27,4 +28,3 @@ var queueMethods = {
     return this._size;
   }
 };
-Object.assign(Queue.prototype, queueMethods);

@@ -1,5 +1,6 @@
 var Stack = function() {
-
+  // Is this still pseudoclassical or is a functional-
+  // shared-pseudoclassical hybrid make it not.
   Object.assign(Stack.prototype, stackMethods);
   this._size = 0;
 };

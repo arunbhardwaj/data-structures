@@ -1,9 +1,13 @@
-// TODO: re-do this class with objects for the children for O(1) lookup and deletion
+// TODO: re-do this class with objects for the children for O(1) deletion
 // O(1) for adding nodes
 // O(n**2) for deleting nodes
 // O(1) for adding edges
 // O(n) for deleting edges
 // O(1) for node lookup
+// 3 ways
+// Using nodes
+// using hashtables
+//
 var Graph = function() {
   var newGraph = Object.create(Graph.prototype);
   newGraph.nodes = {};
@@ -136,8 +140,8 @@ graphNode.Node.prototype.deleteChild = function(node) {
 }
 
 // Not namespacing causes issues with linkedlist.js
-// var Node = function(value) {
-//   var node = Object.create(Node.prototype);
+// var newNode = function(value) {
+//   var node = Object.create(newNode.prototype);
 
 //   node.value = value;
 //   // node.next = null;
@@ -146,7 +150,7 @@ graphNode.Node.prototype.deleteChild = function(node) {
 //   return node;
 // };
 
-// Node.prototype.contains = function(targetNode) {
+// newNode.prototype.contains = function(targetNode) {
 //   for (var i = 0; i < this.children.length; i++) {
 //     if (this.children[i] === targetNode) {
 //       return true;
@@ -155,7 +159,7 @@ graphNode.Node.prototype.deleteChild = function(node) {
 //   return false;
 // }
 
-// Node.prototype.indexOf = function(target) {
+// newNode.prototype.indexOf = function(target) {
 //   for (var i = 0; i < this.children.length; i++) {
 //     if (this.children[i] === target) {
 //       return i;
@@ -164,7 +168,7 @@ graphNode.Node.prototype.deleteChild = function(node) {
 //   return -1;
 // }
 
-// Node.prototype.deleteChild = function(node) {
+// newNode.prototype.deleteChild = function(node) {
 //   var index = this.indexOf(node);
 //   if (index >= 0) {
 //     this.children.splice(index, 1);
