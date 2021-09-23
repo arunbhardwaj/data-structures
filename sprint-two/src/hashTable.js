@@ -16,7 +16,7 @@ HashTable.prototype.insert = function(k, v) {
   $._entries++;
   $.computeLF();
 
-  // check size and resize if necessary
+  // TODO: check size and resize if necessary
   // $.resize();
 };
 
