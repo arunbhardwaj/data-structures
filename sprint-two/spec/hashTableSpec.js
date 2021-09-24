@@ -21,6 +21,12 @@ describe('hashTable', function() {
     expect(hashTable.retrieve).to.be.a('function');
   });
 
+  it('should initialize all values to an empty array', function() {
+    for (var i = 0; i < hashTable._limit; i++) {
+      expect(hashTable._storage.get(i).length).to.equal(0);
+    }
+  });
+
   it('should store values that were inserted', function() {
     hashTable.insert('Steven', 'Seagal');
     expect(hashTable.retrieve('Steven')).to.equal('Seagal');
@@ -65,17 +71,6 @@ describe('hashTable', function() {
     });
     expect(hashTable._limit).to.equal(16);
   });
-
-  // it ('should rehash when needed', function() {
-  //   _.each(people, function(person) {
-  //     var firstName = person[0];
-  //     var lastName = person[1];
-  //     hashTable.insert(firstName, lastName);
-  //     var temp = hashTable;
-  //     // expect(hashTable.rehashAndReinsert()).to.equal(temp);
-  //   });
-  //   expect(hashTable._limit).to.equal(16);
-  // });
 
   it ('should halve in size when needed', function() {
     _.each(people, function(person) {

@@ -29,6 +29,7 @@ var LimitedArray = function(limit) {
     }
   };
 
+  // Checks to see if you're adding past the size of the limited array
   var checkLimit = function(index) {
     if (typeof index !== 'number') {
       throw new Error('setter requires a numeric index for its first argument');
