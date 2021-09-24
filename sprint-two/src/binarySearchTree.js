@@ -43,18 +43,33 @@ BSTMethods.contains = function(value) {
     return true;
   }
   if (value < this.value) {
-    return (this.left == null) ? false : this.left.contains(value);
+    return (this.left === null) ? false : this.left.contains(value);
   } else {
-    return (this.right == null) ? false : this.right.contains(value);
+    return (this.right === null) ? false : this.right.contains(value);
   }
 };
 
 BSTMethods.depthFirstLog = function(callback) {
   callback(this.value);
-  if (this.left != null) {
+  if (this.left !== null) {
     this.left.depthFirstLog(callback);
   }
-  if (this.right != null) {
+  if (this.right !== null) {
     this.right.depthFirstLog(callback);
+  }
+};
+
+BSTMethods.breadthFirstLog = function(callback) {
+  var queue = [];
+  queue.push(this);
+  while (queue.length !== 0) {
+    var current = queue.shift();
+    if (current.left !== null) {
+      queue.push(current.left);
+    }
+    if (current.right !== null) {
+      queue.push(current.right);
+    }
+    callback(current.value);
   }
 };
