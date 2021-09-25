@@ -55,7 +55,6 @@ HashTable.prototype.initialize = function() {
 HashTable.prototype.checkAndGrow = function() {
   if (this._currentLoadFactor > this._growLoadFactor) {
     this._limit *= 2;
-    this.computeLF();
 
     // rehash and re-assign items
     this.rehashAndReinsert(true);
@@ -65,7 +64,10 @@ HashTable.prototype.checkAndGrow = function() {
 HashTable.prototype.checkAndShrink = function() {
   if (this._currentLoadFactor < this._shrinkLoadFactor) {
     this._limit /= 2;
-    this.computeLF();
+    // could just pass the newlimit as a parameter
+    // in the rehash function. Then we don't need to pass a
+    // boolean. The rehash function does the same function
+    // regardless of shrink or grow.
 
     this.rehashAndReinsert(false);
 
@@ -75,6 +77,8 @@ HashTable.prototype.checkAndShrink = function() {
 // Iterates through hash table and transfers every
 // key-value tuple to new empty storage of different
 // size. Resets _entries, _intialized.
+// Takes in a state of true for growing or false for
+// shrinking
 HashTable.prototype.rehashAndReinsert = function(state) {
   var oldStorage = this._storage;
   this._storage = LimitedArray(this._limit);
@@ -83,16 +87,27 @@ HashTable.prototype.rehashAndReinsert = function(state) {
   this.initialize();
   this.computeLF(); // unnecessary
 
-  var oldLimit = (state) ? this._limit / 2 : this._limit * 2;
+  // unnecessary replace with oldStorage.length;
+  // var oldLimit = (state) ? this._limit / 2 : this._limit * 2;
 
-  for (var index = 0; index < oldLimit; index++) {
-    var bucket = oldStorage.get(index);
+  // for (var index = 0; index < oldLimit; index++) {
+  //   var bucket = oldStorage.get(index);
+  //   for (var i = 0; i < bucket.length; i++) {
+  //     var k = bucket[i][0];
+  //     var v = bucket[i][1];
+  //     this.transferTupleToNewStorage(k, v);
+  //   }
+  // }
+  oldStorage.each(function(bucket) {
     for (var i = 0; i < bucket.length; i++) {
       var k = bucket[i][0];
       var v = bucket[i][1];
       this.transferTupleToNewStorage(k, v);
     }
-  }
+  }.bind(this)); // must bind `this` since it'll lose its context
+  // or you can
+  // var context = this;
+  // and pass in `context` to the higher order function.
 };
 
 // Inserts without a grow check. Could be handled with a boolean
