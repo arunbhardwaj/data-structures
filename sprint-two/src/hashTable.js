@@ -76,7 +76,7 @@ HashTable.prototype.checkAndShrink = function() {
 // key-value tuple to new empty storage of different
 // size. Resets _entries, _intialized.
 HashTable.prototype.rehashAndReinsert = function(state) {
-  this._oldStorage = this._storage;
+  var oldStorage = this._storage;
   this._storage = LimitedArray(this._limit);
   this._entries = 0;
   this._intialized = false;
@@ -86,7 +86,7 @@ HashTable.prototype.rehashAndReinsert = function(state) {
   var oldLimit = (state) ? this._limit / 2 : this._limit * 2;
 
   for (var index = 0; index < oldLimit; index++) {
-    var bucket = this._oldStorage.get(index);
+    var bucket = oldStorage.get(index);
     for (var i = 0; i < bucket.length; i++) {
       var k = bucket[i][0];
       var v = bucket[i][1];
@@ -147,4 +147,15 @@ HashTable.prototype.computeLF = function() {
 
 HashTable.prototype.getBucket = function(index) {
   return this._storage.get(index);
+};
+
+HashTable.prototype.contains = function(k) {
+  var index = getIndexBelowMaxForKey(k, this._limit);
+  var bucket = this.getBucket(index);
+  for (var i = 0; i < bucket.length; i++) {
+    if (bucket[i][0] === k) {
+      return true;
+    }
+  }
+  return false;
 };

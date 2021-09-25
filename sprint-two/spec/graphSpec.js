@@ -54,6 +54,48 @@ describe('graph', function() {
     expect(graph.hasEdge(4, 5)).to.equal(false);
   });
 
+  it('should remove multiple edges between multiple nodes when a node is removed', function() {
+    for (var i = 2; i < 9; i++) {
+      graph.addNode(i);
+    }
+    graph.addEdge(5, 4);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 4);
+    graph.addEdge(5, 7);
+    graph.addEdge(5, 2);
+    expect(graph.hasEdge(4, 5)).to.equal(true);
+    expect(graph.hasEdge(7, 5)).to.equal(true);
+    expect(graph.hasEdge(2, 5)).to.equal(true);
+    graph.removeNode(5);
+    expect(graph.hasEdge(4, 5)).to.equal(false);
+    expect(graph.hasEdge(7, 5)).to.equal(false);
+    expect(graph.hasEdge(2, 5)).to.equal(false);
+  });
+
+  // it('should have no edges once all nodes are removed', function() {
+  //   for (var i = 2; i < 9; i++) {
+  //     graph.addNode(i);
+  //   }
+  //   graph.addEdge(5, 4);
+  //   graph.addEdge(2, 3);
+  //   graph.addEdge(3, 4);
+  //   graph.addEdge(5, 7);
+  //   graph.addEdge(5, 2);
+  //   expect(graph.hasEdge(4, 5)).to.equal(true);
+  //   expect(graph.hasEdge(2, 3)).to.equal(true);
+  //   expect(graph.hasEdge(3, 4)).to.equal(true);
+  //   expect(graph.hasEdge(5, 7)).to.equal(true);
+  //   expect(graph.hasEdge(5, 2)).to.equal(true);
+  //   for (var i = 2; i < 9; i++) {
+  //     graph.removeNode(i);
+  //   }
+  //   expect(graph.hasEdge(4, 5)).to.equal(false);
+  //   expect(graph.hasEdge(2, 3)).to.equal(false);
+  //   expect(graph.hasEdge(3, 4)).to.equal(false);
+  //   expect(graph.hasEdge(5, 7)).to.equal(false);
+  //   expect(graph.hasEdge(5, 2)).to.equal(false);
+  // });
+
   it('should execute a callback on each node in the graph', function() {
     var connectToFive = function(item) {
       graph.addEdge(item, 5);

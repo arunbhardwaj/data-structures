@@ -29,6 +29,11 @@ var LimitedArray = function(limit) {
     }
   };
 
+  // For verifying hash table is reorganizing tuples properly
+  limitedArray.getArray = function() {
+    return storage;
+  };
+
   // Checks to see if you're adding past the size of the limited array
   var checkLimit = function(index) {
     if (typeof index !== 'number') {

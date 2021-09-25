@@ -87,4 +87,14 @@ describe('hashTable', function() {
     hashTable.remove('Mr.');
     expect(hashTable._limit).to.equal(8);
   });
+
+  it ('should resize and reorganize the hashtable tuples correctly', function() {
+    _.each(people, function(person) {
+      var firstName = person[0];
+      var lastName = person[1];
+      hashTable.insert(firstName, lastName);
+    });
+    expect(hashTable._limit).to.equal(16);
+    expect(JSON.stringify(hashTable._storage.getArray())).to.equal('[[],[],[["Brendan","Eich"]],[],[["Dr.","Sunshine"]],[],[],[["George","Harrison"]],[],[],[],[["Steven","Tyler"]],[["Alan","Turing"]],[["Mr.","Doob"]],[],[["John","Resig"]]]');
+  });
 });
